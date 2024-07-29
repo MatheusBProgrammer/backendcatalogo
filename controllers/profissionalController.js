@@ -42,7 +42,6 @@ const registerProfissional = async (req, res) => {
     email,
     senha,
     descricaoPessoal,
-    horarioAtendimento,
   } = req.body;
   let perfilImagem = null;
 
@@ -61,6 +60,8 @@ const registerProfissional = async (req, res) => {
         .json({ msg: "Já existe um profissional com esse email" });
     }
 
+    // Hash a senha antes de salvar no banco de dados
+    const hashedPassword = await bcrypt.hash(senha, 10);
     // Criar o objeto endereco
     const endereco = {
       cep,
@@ -80,9 +81,8 @@ const registerProfissional = async (req, res) => {
       endereco, // Salvando o objeto endereço diretamente
       telefone,
       email,
-      senha,
+      senha: hashedPassword,
       descricaoPessoal,
-      horarioAtendimento,
       perfilImagem,
     });
 

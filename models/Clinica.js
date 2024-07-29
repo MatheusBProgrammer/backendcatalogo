@@ -64,18 +64,6 @@ const clinicaSchema = new Schema(
       type: String,
       trim: true,
     },
-    horarioFuncionamento: {
-      segunda_a_sexta: {
-        type: String,
-        required: true,
-      },
-      sabado: {
-        type: String,
-      },
-      domingo: {
-        type: String,
-      },
-    },
     tiposDeAtendimento: [
       {
         nome: {
